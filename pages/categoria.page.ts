@@ -9,8 +9,8 @@ export class CategoriaPage {
 
   async agregarProductoAlCarrito(nombreProducto: string) {
 
-    const producto = this.page.getByText(nombreProducto)
-    const addCarritoBoton = this.page.getByRole('button', { name: 'Añadir al carrito ' })
+    const producto = this.page.getByText(nombreProducto) // Se define el producto enviado desde el caso de prueba para ser añadido al carrito
+    const addCarritoBoton = this.page.getByRole('button', { name: 'Añadir al carrito ' }) // Se define el localizador del boton añadir al carrito
 
     await producto.first().click();
     await this.page.waitForLoadState('networkidle');

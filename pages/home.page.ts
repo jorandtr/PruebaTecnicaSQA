@@ -12,7 +12,7 @@ export class HomePage {
   }
 
   async abrirCategoria(nombre: string) {
-  const categoriaLink = this.page.locator('#primary-menu').getByRole('link', { name: nombre });
+  const categoriaLink = this.page.locator('#primary-menu').getByRole('link', { name: nombre }); // Ubica el elemento con el nombre de categoria enviado desde el caso de prueba
     await categoriaLink.click();
     await this.page.waitForLoadState('networkidle'); // Espera que cargue completamente el sitio
   }  
