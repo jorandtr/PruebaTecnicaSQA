@@ -1,4 +1,3 @@
-// utils/screenshots.ts
 import { Page, test } from '@playwright/test';
 
 export async function capturarEvidencia(page: Page, nombre: string) {
