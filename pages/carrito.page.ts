@@ -39,5 +39,6 @@ export class CarritoPage {
     const subtotalNumero = Number(subtotalTexto.replace(/[^0-9]/g, '')); // LImpia el precio del subtotal
     expect(subtotalNumero).toBe(totalProductos); // Compara los totales validando que sean iguales
   }
+  
 }
         

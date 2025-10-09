@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export class CategoriaPage {
   readonly page: Page;
@@ -7,14 +7,24 @@ export class CategoriaPage {
     this.page = page;
   }
 
-  async agregarProductoAlCarrito(nombreProducto: string) {
+  async agregarProductoAlCarrito(nombreProducto: string, apiUrl: string) {
 
     const producto = this.page.getByText(nombreProducto) // Se define el producto enviado desde el caso de prueba para ser añadido al carrito
     const addCarritoBoton = this.page.getByRole('button', { name: 'Añadir al carrito ' }) // Se define el localizador del boton añadir al carrito
 
     await producto.first().click();
     await this.page.waitForLoadState('networkidle');
-    await addCarritoBoton.click();
+
+    const [response] = await Promise.all([ 
+      this.page.waitForResponse(resp => resp.url().includes(apiUrl)), // Obtiene la respuesta de la api enviada desde el caso de prueba
+      addCarritoBoton.click(),
+    ]);
     await this.page.waitForLoadState('networkidle');
+    return response;
   }
+
+  async validarRespuestaDelServicio(response: any) {
+    expect(response.status()).toBe(200);// Validar que la respuesta del servicio sea 200
+  }
+
 }
