@@ -5,7 +5,6 @@ import { CarritoPage } from '../../pages/carrito.page';
 import { testData } from '../../fixtures/test-data';
 import { capturarEvidencia } from '../../utils/screenshots';
 test('Seleccionar dos productos de la categoría “Amor” y agregarlos al carrito', async ({ page }) => {
-  
   const home = new HomePage(page);
   const categoria = new CategoriaPage(page);
   const carrito = new CarritoPage(page);
@@ -13,7 +12,6 @@ test('Seleccionar dos productos de la categoría “Amor” y agregarlos al carr
   const producto1 = testData.productos.producto1;
   const producto2 = testData.productos.producto2;
   const stripeUrl = 'https://m.stripe.com/6';
-
   await home.irAHome();
   await home.abrirCategoria(categorias);
   const response1 = await categoria.agregarProductoAlCarrito(producto1, stripeUrl);

@@ -15,8 +15,6 @@ export class CarritoPage {
     // Selecciona todos los inputs que tienen value="1"
     const items = this.page.locator('input[value="1"]');
     const total = await items.count(); // Cuenta cuantos inputs con el localizador value="1" encuentra
-
-    console.log('Total de productos detectados con value="1": ${total}');
     await expect(total).toBe(2); // Evalua que el numero de elementos con value="1" sea 2 igual a lo que se espera
   }
   // Validar que los producto mostrados en pantalla sean los enviados desde el caso de prueba
